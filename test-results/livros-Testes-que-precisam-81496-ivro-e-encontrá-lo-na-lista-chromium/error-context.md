@@ -64,7 +64,7 @@ ReferenceError: responsePromise is not defined
         - generic [ref=e62]:
           - generic [ref=e63]:
             - generic [ref=e64]: Título do Livro
-            - 'textbox "Ex: Dom Casmurro" [ref=e65]': Livro E2E 814
+            - 'textbox "Ex: Dom Casmurro" [ref=e65]': Livro E2E 22
           - generic [ref=e66]:
             - generic [ref=e67]: Autor
             - 'textbox "Ex: Machado de Assis" [ref=e68]': Automação Playwright
@@ -148,5 +148,7 @@ ReferenceError: responsePromise is not defined
   47 |     await page.click('button:has-text("Cancelar")');
   48 |     await expect(page.locator('.modal')).not.toBeVisible();
   49 |   });
-  50 | });
+  50 |   //excluir
+  51 |   test('deve permitir excluir um li')
+  52 | });
 ```

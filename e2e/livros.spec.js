@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { aw } from 'vitest/dist/chunks/reporters.nr4dxCkA.js';
 
 test.describe('Testes que precisam estar autenticados primeiro', () => {
   test.beforeEach(async ({ page }) => {
@@ -47,4 +48,20 @@ test.describe('Testes que precisam estar autenticados primeiro', () => {
     await page.click('button:has-text("Cancelar")');
     await expect(page.locator('.modal')).not.toBeVisible();
   });
+  //excluir
+  test('deve permitir excluir um livro', async ({ page }) => {
+    await page.goto('/livros');
+    await page.waitForSelector('.list-card');
+
+    const primeiroLivro = page.locator('.list-card').first();
+    const titulo = await primeiroLivro.locator('.list-card_title').textContent();
+
+    await primeiroLivro.locator('button:has-text("Excluir")').click();
+    await page.locator('.modal').toBeVisible();
+    await page.click('.modal button:has-text("Excluir")',{force:true});
+
+    await expect(page.locator('.modal')).not.toBeVisible();
+    await expect(page.locator('.list-card',{hasText:titulo})).not.toBeVisible();
+  });
+  //editar
 });
